@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="top">
+  <div>
+    <h1>Dashboard</h1>
+    <p class="muted">Internal operations overview</p>
+  </div>
+  <div class="muted">Signed in as {{ username }}</div>
+</div>
+<div class="grid">
+  <div class="card"><div class="muted">Invoices</div><h1>{{ invoice_count }}</h1></div>
+  <div class="card"><div class="muted">Customers</div><h1>{{ customer_count }}</h1></div>
+  <div class="card"><div class="muted">Finance records</div><h1>{{ finance_count }}</h1></div>
+</div>
+<div class="card" style="margin-top:20px">
+  <h3>Pending invoices</h3>
+  <table>
+    <tr><th>ID</th><th>Company</th><th>Amount</th><th>Due</th></tr>
+    {% for row in pending %}
+    <tr>
+      <td><a href="/invoices/{{ row.invoice_id }}">{{ row.invoice_id }}</a></td>
+      <td>{{ row.company }}</td>
+      <td>{{ format_inr(row.amount) }}</td>
+      <td>{{ row.due_date }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

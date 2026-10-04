@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ record.record_id }}</h1>
+<div class="card">
+  <p>Invoice: {{ record.invoice_id }}</p>
+  <p>Company: {{ record.company }}</p>
+  <p>Amount: {{ format_inr(record.amount) }}</p>
+  <p>Due date: {{ record.due_date }}</p>
+  <p>Status: {{ record.status }}</p>
+  <p>Created: {{ record.created_at }}</p>
+</div>
+{% endblock %}

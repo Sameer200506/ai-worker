@@ -1,0 +1,25 @@
+services:
+  sandbox:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: python -m uvicorn apps.sandbox.main:app --host 0.0.0.0 --port 3001
+    ports:
+      - "3001:3001"
+
+  backend:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: bash -lc "pip install -r backend/requirements.txt && python -m uvicorn backend.api.main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    environment:
+      - SANDBOX_URL=http://sandbox:3001
+    depends_on:
+      - sandbox
+
+# The Next.js operator UI is intended to run on the host:
+#   cd apps/web && npm install && npm run dev

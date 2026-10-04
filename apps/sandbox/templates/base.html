@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>CentrAlign Internal</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+{% if request.url.path != '/login' %}
+<div class="shell">
+  <aside class="nav">
+    <div class="brand">CENTRALIGN</div>
+    <a href="/dashboard" class="{% if request.url.path.startswith('/dashboard') %}active{% endif %}">Dashboard</a>
+    <a href="/invoices" class="{% if request.url.path.startswith('/invoices') %}active{% endif %}">Invoices</a>
+    <a href="/customers" class="{% if request.url.path.startswith('/customers') %}active{% endif %}">Customers</a>
+    <a href="/finance" class="{% if request.url.path.startswith('/finance') %}active{% endif %}">Finance</a>
+    <a href="/settings" class="{% if request.url.path.startswith('/settings') %}active{% endif %}">Settings</a>
+    <a href="/logout">Log out</a>
+  </aside>
+  <div class="main">
+    {% block content %}{% endblock %}
+  </div>
+</div>
+{% else %}
+  {% block login %}{% endblock %}
+{% endif %}
+</body>
+</html>

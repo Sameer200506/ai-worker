@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ customer.name }}</h1>
+<div class="card">
+  <p>Customer ID: {{ customer.customer_id }}</p>
+  <p>Email: {{ customer.email }}</p>
+  <p>Status: <strong id="customer-status">{{ customer.status }}</strong></p>
+  <p>Contact: {{ customer.contact }}</p>
+  <p>Last contact: {{ customer.last_contact }}</p>
+  <form method="post" class="row" style="margin-top:16px">
+    <select name="status">
+      <option {% if customer.status == 'Active' %}selected{% endif %}>Active</option>
+      <option {% if customer.status == 'Follow Up' %}selected{% endif %}>Follow Up</option>
+      <option {% if customer.status == 'Lead' %}selected{% endif %}>Lead</option>
+      <option {% if customer.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+    </select>
+    <button type="submit" id="update-status">Update status</button>
+  </form>
+</div>
+{% endblock %}

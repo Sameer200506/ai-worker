@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="top"><h1>Finance</h1></div>
+{% if request.query_params.get('error') %}
+<p class="err">Finance action failed. Reason: Session expired.</p>
+{% endif %}
+<div class="card">
+  <h3>Create record</h3>
+  <form method="post" action="/finance" class="row" style="flex-wrap:wrap">
+    <input name="invoice_id" placeholder="Invoice ID" />
+    <input name="company" placeholder="Company" />
+    <input name="amount" placeholder="Amount" />
+    <input name="due_date" placeholder="YYYY-MM-DD" />
+    <button type="submit" id="create-finance">Create</button>
+  </form>
+</div>
+<div class="card" style="margin-top:16px">
+  <table>
+    <tr><th>Record</th><th>Invoice</th><th>Company</th><th>Amount</th><th>Due</th><th>Status</th></tr>
+    {% for row in records %}
+    <tr>
+      <td><a href="/finance/{{ row.record_id }}">{{ row.record_id }}</a></td>
+      <td>{{ row.invoice_id }}</td>
+      <td>{{ row.company }}</td>
+      <td>{{ format_inr(row.amount) }}</td>
+      <td>{{ row.due_date }}</td>
+      <td>{{ row.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

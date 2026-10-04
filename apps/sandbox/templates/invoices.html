@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="top">
+  <div>
+    <h1>Invoices</h1>
+    <p class="muted">Search does not return a hard-coded latest invoice.</p>
+  </div>
+  <form class="row">
+    <input type="text" name="company" value="{{ company }}" placeholder="Filter by company" />
+    <button type="submit">Search</button>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <tr><th>Invoice</th><th>Company</th><th>Amount</th><th>Due</th><th>Status</th><th>Issued</th></tr>
+    {% for row in invoices %}
+    <tr>
+      <td><a href="/invoices/{{ row.invoice_id }}">{{ row.invoice_id }}</a></td>
+      <td>{{ row.company }}</td>
+      <td>{{ format_inr(row.amount) }}</td>
+      <td>{{ row.due_date }}</td>
+      <td><span class="badge {{ row.status|lower }}">{{ row.status }}</span></td>
+      <td>{{ row.issued_at }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

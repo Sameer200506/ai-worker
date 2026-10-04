@@ -1,0 +1,73 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --card: #1f2937;
+  --line: #334155;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --ok: #34d399;
+  --warn: #fbbf24;
+  --bad: #f87171;
+  --font: "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: linear-gradient(180deg, #0b1220, #111827);
+  color: var(--text);
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+.shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.nav {
+  background: #0b1220;
+  border-right: 1px solid var(--line);
+  padding: 24px 18px;
+}
+.brand { font-weight: 700; letter-spacing: 0.04em; margin-bottom: 28px; }
+.nav a { display: block; padding: 10px 12px; color: var(--muted); border-radius: 8px; }
+.nav a.active, .nav a:hover { background: #1e293b; color: white; }
+.main { padding: 28px 36px; }
+.top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+h1 { margin: 0 0 8px; font-size: 26px; }
+.muted { color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+}
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.badge { padding: 3px 8px; border-radius: 999px; font-size: 12px; }
+.pending { background: #422006; color: #fcd34d; }
+.paid { background: #064e3b; color: #6ee7b7; }
+.follow { background: #1e3a8a; color: #93c5fd; }
+.input, select, button, input[type=text], input[type=password] {
+  font: inherit;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #0f172a;
+  color: white;
+}
+button, .btn {
+  background: #0369a1;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  display: inline-block;
+}
+.login {
+  max-width: 420px;
+  margin: 12vh auto;
+  background: var(--card);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.row { display: flex; gap: 12px; align-items: center; }
+.err { color: var(--bad); }
